@@ -2,3 +2,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-header-row {
+    background-color: rgb(124,156,226) !important;
+    height: 50px !important;
+}
+
+.mat-mdc-row{
+    height: 40px !important;
+}
+
+.mat-mdc-row:nth-child(even){
+    background-color: rgb(205,186,223);
+    height: 40px !important;
+}
