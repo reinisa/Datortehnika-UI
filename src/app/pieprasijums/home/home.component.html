@@ -1,12 +1,12 @@
-<div class="container" style="margin-top: 20px; width: 100%;">
+<div class="container" style="width: 100%; height: auto;">
     <br>
-    <h1 style="margin-left: 2%; color: black; text-align: left; font-weight: 500;">Datortehnikas pieprasīšanas sistēma</h1>
+    <h1 style="margin-left: 2%; color: black; text-align: left; text-transform: uppercase; font-weight: 500;">Datortehnikas pieprasīšanas sistēma</h1>
     <br>
-    <h2 style="font-weight: 500; text-align: center; letter-spacing:0.1ch;">Pieprasījumu saraksts</h2>
+    <h1 style="font-weight: 500; text-align: center; letter-spacing:0.1ch;">Pieprasījumu saraksts</h1>
     <mat-form-field style="margin-left: 2%;">
-        <input matInput placeholder="Meklēt pieprasījumu" type="text">
+        <input (input)="searchPieprasijums(filter.value)" matInput placeholder="Meklēt pieprasījumu" type="text" #filter>
     </mat-form-field>
-    <button (click)="openDialog(p)" mat-flat-button style="width: 130px; height: 60px; float: right; margin-right: 2%;">Izveidot pieprasījumu</button>
+    <button (click)="openDialog(p)" mat-flat-button style="width: 140px; height: 60px; float: right; margin-right: 2%;">Izveidot pieprasījumu</button>
     <br>
     <div class="data-container mat-elevation-z8" style="margin-left: 2%; margin-right: 2%;">
         <table mat-table [dataSource]="dataSource">
@@ -42,7 +42,7 @@
           </ng-container>
 
           <ng-container matColumnDef="apstiprinat">
-            <th mat-header-cell *matHeaderCellDef> Apstiprināt</th>
+            <th mat-header-cell *matHeaderCellDef> Apstiprināt </th>
             <td mat-cell *matCellDef="let pieprasijums"> <button (click)="changeStatus(pieprasijums, true)" mat-flat-button style="height: 27px; width: auto;">Apstiprināt</button> </td>
           </ng-container>
 
@@ -59,6 +59,23 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let pieprasijums; columns: displayedColumns;"></tr>
       
+        </table>
+      </div>
+      <h2 style="font-weight: 500; text-align: left; letter-spacing:0.1ch; margin-top: 3%; margin-left: 2%; width: 50%;">Pieejamā tehnika</h2>
+      <div class="data-container mat-elevation-z8" style="margin-left: 2%; margin-right: 2%; width: 50%; padding-bottom: 3%;">
+        <table mat-table [dataSource]="dataSourceTehnika">
+          <ng-container matColumnDef="nosaukums">
+            <th mat-header-cell *matHeaderCellDef> Nosaukums </th>
+            <td mat-cell *matCellDef="let tehnika"> {{ tehnika.nosaukums }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="apraksts">
+            <th mat-header-cell *matHeaderCellDef> Apraksts </th>
+            <td mat-cell *matCellDef="let tehnika"> {{ tehnika.apraksts }} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsTehnika"></tr>
+          <tr mat-row *matRowDef="let tehnika; columns: displayedColumnsTehnika;"></tr>
         </table>
       </div>
       

@@ -21,19 +21,12 @@ export class PieprasijumsService {
     return this._httpClient.post<Pieprasijums>(`${this.baseUrl}/createPieprasijums`,data); // <Pieprasijums[]>
   }
 
-  // updatePieprasijums(data:Pieprasijums){
-  //   return this._httpClient.put<Pieprasijums[]>(`${this.baseUrl}/updatePieprasijums/${data.id}/${data.status}`,{});
-  // }
   updatePieprasijums(id: number, status: boolean){
     return this._httpClient.put<Pieprasijums>(`${this.baseUrl}/updatePieprasijums/${id}/${status}`,{status});
   }
-  // updatePieprasijums(id: number, status: Status): Observable<Pieprasijums> {
-  //   return this._httpClient.put<Pieprasijums>(`${this.baseUrl}/pieprasijums/updatePieprasijums/${id}/status`, { status });
-  // }
 
   deletePieprasijums(id: number){
     return this._httpClient.delete<Pieprasijums>(`${this.baseUrl}/deletePieprasijums/${id}`)
   }
-  
 
 }

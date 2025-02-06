@@ -1,12 +1,6 @@
 <div class="container" style="width: 500px;">
-    
-    <div>
-        <button mat-icon-button mat-dialog-close="true" style="float: right; margin: 15px;">
-            <mat-icon style="color: red;">close</mat-icon>
-        </button>
-    </div>
 
-    <div mat-dialog-title><h3 style="color: blueviolet; text-align: center;">Pieprasījuma izveide</h3></div>
+    <div mat-dialog-title><h3 style="color: rgb(72, 104, 173); text-align: center; margin-top: 0;">Pieprasījuma izveide</h3></div>
 
     <div mat-dialog-content>
         <mat-form-field appearance="outline" style="width: 100%; margin-top: 15px;">
@@ -18,7 +12,6 @@
         
         <mat-form-field appearance="outline" style="width: 100%;">
             <input matInput [(ngModel)]="data.pamatojums" type="text" placeholder="Ievadi pamatojumu" />
-            <!-- <mat-icon fontIcon="person" matSuffix></mat-icon> -->
           </mat-form-field>
 
         <mat-form-field appearance="outline" style="width: 100%; margin-top: 15px;">
@@ -30,7 +23,7 @@
           
     </div>
 
-    <div mat-dialog-actions align="center">
+    <div mat-dialog-actions align="center" style="margin-bottom: 15px;"> 
         <button (click)="addPieprasijums(data)" mat-flat-button [mat-dialog-close]="data">Izveidot</button>
         <button mat-flat-button mat-dialog-close="true" style="background-color:crimson !important;">Atcelt</button>
     </div>

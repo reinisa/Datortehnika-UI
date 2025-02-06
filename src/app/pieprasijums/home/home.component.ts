@@ -10,6 +10,8 @@ import { PieprasijumsFormComponent } from '../pieprasijums-form/pieprasijums-for
 import { Params } from '../../paramEnums/params';
 import { Status } from '../../paramEnums/status';
 import { CommonModule } from '@angular/common';
+import { Tehnika } from '../../tehnika/tehnika';
+import { TehnikaService } from '../../tehnika/tehnika.service';
 
 @Component({
   selector: 'app-home',
@@ -27,9 +29,15 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements AfterViewInit{
 
   displayedColumns = ['id', 'tehnika', 'datums', 'pamatojums', 'parametri', 'status', 'apstiprinat','noraidit', 'dzest'];
-  dataSource = new MatTableDataSource<Pieprasijums>();
+  displayedColumnsTehnika = ['nosaukums', 'apraksts'];
 
-  constructor(private pieprasijumsService:PieprasijumsService){}
+  dataSource = new MatTableDataSource<Pieprasijums>();
+  dataSourceTehnika = new MatTableDataSource<Tehnika>();
+
+  constructor(
+    private pieprasijumsService:PieprasijumsService,
+    private tehnikaService:TehnikaService
+  ){}
 
   p: Pieprasijums= {
     id: undefined,
@@ -41,13 +49,23 @@ export class HomeComponent implements AfterViewInit{
     };
 
   pieprasijums:Pieprasijums[]=[];
+  tehnika:Tehnika[]=[];
+  filteredPieprasijums:Pieprasijums[]=[];
   readonly dialog=inject(MatDialog);
 
   ngAfterViewInit(): void {
       this.pieprasijumsService.fetchAllPieprasijums().subscribe((data)=>{
         this.pieprasijums=data;
         this.dataSource = new MatTableDataSource<Pieprasijums>(data);
-      })
+
+        // this.tehnika = [...new Map(data.map(item => [item.tehnika.id, item.tehnika])).values()];
+        // this.dataSourceTehnika = new MatTableDataSource<Tehnika>(this.tehnika);
+      });
+
+      this.tehnikaService.fetchAllTehnika().subscribe((tehnikaData)=>{
+        this.tehnika = tehnikaData;
+        this.dataSourceTehnika = new MatTableDataSource<Tehnika>(tehnikaData);
+      });
   }
 
   openDialog(p:Pieprasijums):void{ 
@@ -88,4 +106,10 @@ export class HomeComponent implements AfterViewInit{
     }
   }
   
+  searchPieprasijums(input:any){
+    this.filteredPieprasijums=this.pieprasijums.filter(item=>item.tehnika.nosaukums.toString().includes(input)
+  || item.datums.toString().includes(input) || item.pamatojums.toLowerCase().includes(input.toLowerCase()) 
+  || item.parametri.toLowerCase().includes(input.toLowerCase()) || item.status.toString().includes(input))
+  this.dataSource = new MatTableDataSource<Pieprasijums>(this.filteredPieprasijums);
+  }
 }
