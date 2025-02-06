@@ -56,17 +56,4 @@ export class PieprasijumsFormComponent implements OnInit {
         }
       })
   }
-
-//   addPieprasijums(p:Pieprasijums){
-//     this.pieprasijumsService.createPieprasijums(p).subscribe({
-//       next:(data)=>{
-//         console.log("Pieprasijums Created Successfully")
-//         // window.location.reload();
-//         this.dialogRef.close(data);
-//       },
-//       error:(err)=>{
-//         console.log(err);
-//       }
-//     })
-//   }
 }

@@ -57,9 +57,6 @@ export class HomeComponent implements AfterViewInit{
       this.pieprasijumsService.fetchAllPieprasijums().subscribe((data)=>{
         this.pieprasijums=data;
         this.dataSource = new MatTableDataSource<Pieprasijums>(data);
-
-        // this.tehnika = [...new Map(data.map(item => [item.tehnika.id, item.tehnika])).values()];
-        // this.dataSourceTehnika = new MatTableDataSource<Tehnika>(this.tehnika);
       });
 
       this.tehnikaService.fetchAllTehnika().subscribe((tehnikaData)=>{
